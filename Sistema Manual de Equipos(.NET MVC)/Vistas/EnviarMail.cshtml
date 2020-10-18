@@ -1,0 +1,58 @@
+﻿
+@model IEnumerable<Cotas800.Models.Entidades.Gestion>
+
+
+</br>
+</br>
+<p>
+    <h1>Gestionar Correo</h1>
+</p>
+
+</br>
+</br>
+
+<table class="table table-striped">
+    <thead>
+        <tr>            
+            <th>
+                @Html.DisplayNameFor(model => model.TipoGestion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Para)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Copia)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Descripcion)
+            </th>
+
+            <th>
+
+            </th>
+        </tr>
+    </thead>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+          
+            <td>
+                @Html.DisplayFor(modelItem => item.TipoGestion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Para)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Copia)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descripcion)
+            </td>
+            <td>
+                <a href="mailto:@item.Para?cc=@item.Copia" class="btn btn-info">Enviar Email</a>
+            </td>
+        </tr>
+    }
+
+</table>

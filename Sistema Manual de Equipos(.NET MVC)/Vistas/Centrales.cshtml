@@ -1,0 +1,58 @@
+﻿
+@{
+
+    List<Cotas800.Models.Entidades.CentralEntidad> ItemsCent = (List<Cotas800.Models.Entidades.CentralEntidad>)ViewBag.ItemsCent;
+
+    Cotas800.Models.Entidades.CentralEntidad cent = (Cotas800.Models.Entidades.CentralEntidad)ViewBag.Cent;
+
+}
+
+<br/>
+<h1>Central y sus Ramales</h1>
+<br />
+<hr/>
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="header-content-left">
+                @if (cent != null)
+                {
+                    <h1>@cent.Central</h1>
+                }
+
+            </div>
+        </div>
+
+        <nav class="col-md-6">
+
+            <div class="btn-group">
+                <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" data-display="static" aria-haspopup="true" aria-expanded="false">
+                    Seleccione una Central
+                </button>
+                <div class="dropdown-menu dropdown-menu-lg-right">
+
+                    @foreach (var centr in ItemsCent)
+                    {
+                        <a class="dropdown-item" href="/Vistas/CentralesCombo/@centr.Id">@centr.Central</a>
+                    }
+
+                </div>
+            </div>
+        </nav>
+    </div>
+</div>
+<br />
+<div class="col-md-6">
+    <div class="header-content-right">        
+        @if (cent != null)
+        {
+            <textarea id="ckeditor" class="ckeditor" rows="80" cols="40">@cent.UrloNodo</textarea>
+        }
+        else
+        {
+            <textarea id="ckeditor" class="ckeditor" rows="80" cols="40"></textarea>
+        }
+
+    </div>
+
+</div>

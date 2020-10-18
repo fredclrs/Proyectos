@@ -1,0 +1,87 @@
+﻿@model Cotas800.Models.Entidades.Modem
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<br/>
+
+<h3>Esta Seguro de Eliminar El Modem?</h3>
+
+<div>
+
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Marca)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Marca)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ip)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ip)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FuncionesLed)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FuncionesLed)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Img1)
+        </dt>
+
+        <dd>
+            @if (!string.IsNullOrEmpty(Model.Img1))
+            {
+                <img src="@Url.Content(Model.Img1)" alt="Image" style="width:150px; height:150px; max-width:100%; height:auto; " />
+            }
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Img2)
+        </dt>
+
+        <dd>
+            @if (!string.IsNullOrEmpty(Model.Img2))
+            {
+                <img src="@Url.Content(Model.Img2)" alt="Image" style="width:150px; height:150px; max-width:100%; height:auto; " />
+            }
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tecnologia)
+        </dt>
+
+        <dd>
+            <h3>@ViewBag.tecnologia</h3>
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Borrar" class="btn btn-danger" /> |
+            @Html.ActionLink("Volver Atras", "Index", new { }, new { @class = "btn btn-info"})
+        </div>
+    }
+</div>

@@ -1,0 +1,50 @@
+﻿
+@model IEnumerable<Cotas800.Models.Entidades.IpsDns>
+
+</br>
+</br>
+
+<h1>Servidores con IP y sus DNS</h1>
+
+</br>
+</br>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Ciudad)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ip)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Dns1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Dns2)
+            </th>            
+            
+        </tr>
+    </thead>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <h3>@Html.DisplayFor(modelItem => item.Ciudad)</h3>
+            </td>
+            <td>
+                <h5>@Html.DisplayFor(modelItem => item.Ip)</h5> 
+            </td>
+            <td>
+                <h5>@Html.DisplayFor(modelItem => item.Dns1)</h5>
+            </td>
+            <td>
+                <h5>@Html.DisplayFor(modelItem => item.Dns2)</h5>
+            </td>            
+        </tr>
+    }
+
+</table>
+

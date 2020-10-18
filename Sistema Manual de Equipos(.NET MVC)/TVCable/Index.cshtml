@@ -1,0 +1,95 @@
+﻿
+@model IEnumerable<Cotas800.Models.Entidades.TVCable>
+
+
+@{
+    ViewBag.Title = "Index";
+}
+
+</br>
+</br>
+
+<p>
+    @Html.ActionLink("Nuevo TVCable", "Crear", new { }, new { @class = "btn btn-primary" })
+</p>
+</br>
+</br>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Img1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Img2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Img3)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Img4)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Tecnologia)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Id)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Nombre)
+    </td>
+    <td>
+        @if (!string.IsNullOrEmpty(item.Img1))
+        {
+            <img src="@Url.Content(item.Img1)" alt="Image" style="width:150px; height:150px; max-width:100%; height:auto; " />
+        }
+    </td>
+
+    <td>
+        @if (!string.IsNullOrEmpty(item.Img2))
+        {
+            <img src="@Url.Content(item.Img2)" alt="Image" style="width:150px; height:150px; max-width:100%; height:auto; " />
+        }
+    </td>
+
+    <td>
+        @if (!string.IsNullOrEmpty(item.Img3))
+        {
+            <img src="@Url.Content(item.Img3)" alt="Image" style="width:150px; height:150px; max-width:100%; height:auto; " />
+        }
+    </td>
+    <td>
+        @if (!string.IsNullOrEmpty(item.Img4))
+        {
+            <img src="@Url.Content(item.Img4)" alt="Image" style="width:150px; height:150px; max-width:100%; height:auto; " />
+        }
+    </td>
+
+    <td>
+        @Html.DisplayFor(modelItem => item.Tecnologia)
+    </td>
+
+    <td>
+        @Html.ActionLink("Actualizar", "Edit", new { id = item.Id }, new { @class = "btn btn-warning" })
+        @Html.ActionLink("Borrar", "Delete", new { id = item.Id }, new { @class = "btn btn-danger" })
+    </td>
+</tr>
+    }
+
+</table>
+

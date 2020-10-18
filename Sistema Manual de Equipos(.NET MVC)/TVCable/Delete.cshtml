@@ -1,0 +1,94 @@
+﻿@model Cotas800.Models.Entidades.TVCable
+
+<br/>
+
+<h3>Esta Seguro de Eliminar el TVCable?</h3>
+<div>    
+    <hr />
+    <dl class="dl-horizontal">        
+            <dt>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Nombre)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Img1)
+            </dt>
+
+            <dd>
+                @if (!string.IsNullOrEmpty(Model.Img1))
+                {
+                    <img src="@Url.Content(Model.Img1)" alt="Image" style="width:150px; height:150px; max-width:100%; height:auto; " />
+                }
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Img2)
+            </dt>
+
+            <dd>
+                @if (!string.IsNullOrEmpty(Model.Img2))
+                {
+                    <img src="@Url.Content(Model.Img2)" alt="Image" style="width:150px; height:150px; max-width:100%; height:auto; " />
+                }
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Img3)
+            </dt>
+
+            <dd>
+                @if (!string.IsNullOrEmpty(Model.Img3))
+                {
+                    <img src="@Url.Content(Model.Img3)" alt="Image" style="width:150px; height:150px; max-width:100%; height:auto; " />
+                }
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Img4)
+            </dt>
+
+            <dd>
+                @if (!string.IsNullOrEmpty(Model.Img4))
+                {
+                    <img src="@Url.Content(Model.Img4)" alt="Image" style="width:150px; height:150px; max-width:100%; height:auto; " />
+                }
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Manual)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Manual)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Descripcion)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Descripcion)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Tecnologia)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Tecnologia)
+            </dd>        
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+<div class="form-actions no-color">
+    <input type="submit" value="Borrar" class="btn btn-danger" /> |
+    @Html.ActionLink("Volver Atras", "Index", new { }, new { @class = "btn btn-info" })
+</div>
+    }
+</div>

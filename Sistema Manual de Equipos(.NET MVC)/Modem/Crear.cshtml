@@ -1,0 +1,101 @@
+﻿@model Cotas800.Models.Entidades.Modem
+
+@{
+    ViewBag.Title = "Crear";
+    List<SelectListItem> Items = (List<SelectListItem>)ViewBag.Items;
+}
+
+
+<br />
+<div class="alert alert-light bg-light" role="alert">
+    @ViewBag.ErrorImg
+</div>
+<h2>Crear Nuevo Modem</h2>
+
+
+@using (Html.BeginForm("Crear", "Modem", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="row">
+            <div class="form-group">
+                @Html.LabelFor(model => model.Nombre, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-12">
+                    @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Marca, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-12">
+                    @Html.EditorFor(model => model.Marca, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Marca, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Ip, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-12">
+                    @Html.EditorFor(model => model.Ip, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Ip, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="form-group" style="width: 100%;">                
+                <label class="col-lg-3 control-label">Funciones del los Led:</label>
+                <div class="col-lg-12">
+                    @Html.TextAreaFor(model => model.FuncionesLed, new { @class = "form-control ckeditor", @id = "ckeditor", @rows = "15", @cols = "50", @placeholder = "Escribe funciones de Led aquí", @style = "background-color: white; min-width: 100%;" })
+                    @Html.ValidationMessageFor(model => model.FuncionesLed, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            
+        </div>
+
+        <div class="row">
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Img1, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <span>
+                        @Html.TextBoxFor(model => model.ImagenFile, new { type = "file", @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.ImagenFile, "", new { @class = "text-danger" })
+                    </span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Img2, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <span>
+                        @Html.TextBoxFor(model => model.ImagenFile2, new { type = "file", @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.ImagenFile2, "", new { @class = "text-danger" })
+                    </span>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Tecnologia, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.Tecnologia, Items, "Selecciona Una Tecnologia", new { @calss = "form-control" })
+                </div>
+            </div>
+
+        </div>
+
+        <br />
+        <br />
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Guardar" class="btn btn-success" />
+                @Html.ActionLink("Volver Atras", "Index", new { }, new { @class = "btn btn-info" })
+            </div>
+        </div>
+    </div>
+}

@@ -1,0 +1,112 @@
+﻿
+
+@{
+    List<Cotas800.Models.Entidades.ModemGpon> ItemsGpon = (List<Cotas800.Models.Entidades.ModemGpon>)ViewBag.Items;
+    Cotas800.Models.Entidades.ModemGpon modem = (Cotas800.Models.Entidades.ModemGpon)ViewBag.ModemG;
+}
+
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="header-content-left">
+                @if (@modem != null)
+                {
+                    <h1>@modem.Nombre</h1>
+                    <h4>@modem.Tipo</h4>
+                }
+            </div>
+        </div>
+        <nav class="col-md-6">
+
+            <div class="btn-group">
+                <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" data-display="static" aria-haspopup="true" aria-expanded="false">
+                    Seleccione un Modelo de Modem
+                </button>
+                <div class="dropdown-menu dropdown-menu-lg-right">                    
+                    @foreach (var mod in ItemsGpon)
+                    {
+                        <a class="dropdown-item" href="/Vistas/GponCombo/@mod.Id">@mod.Nombre</a>
+                    }                    
+                </div>
+            </div>            
+        </nav>
+    </div>
+</div>
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="header-content-left">
+                @if (modem != null)
+                {
+                    <img src="@Url.Content(@modem.Img1)" style="width: 100%" />
+                }
+                else
+                {
+                    <img src="#" style="width: 100%" />
+                }
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="header-content-right">
+                <h4>Funciones de los LED del Modem</h4>
+                @if (modem != null)
+                {
+                    <textarea id="ckeditor" class="ckeditor" rows="80" cols="40">@modem.FuncionesLed</textarea>
+                }
+                else
+                {
+                    <textarea id="ckeditor" class="ckeditor" rows="80" cols="40"></textarea>
+                }
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="header-content-left">
+                @if (modem != null)
+                {
+                    <img src="@Url.Content(@modem.Img2)" style="width: 100%" />
+                }
+                else
+                {
+                    <img src="#" style="width: 100%" />
+                }
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="header-content-right">
+                <h4>Config. Ip Dinamica:</h4>
+                <div class="form-group">
+                    @if (modem != null)
+                    {
+                        <textarea id="ckeditor" class="ckeditor" rows="80" cols="40">@modem.DescripcionIpD</textarea>
+                    }
+                    else
+                    {
+                        <textarea id="ckeditor" class="ckeditor" rows="80" cols="40"></textarea>
+                    }
+                </div>
+                <h4>Config. Ip Fija:</h4>
+                <div class="form-group">
+                    @if (modem != null)
+                    {
+                        <textarea id="ckeditor" class="ckeditor" rows="80" cols="40">@modem.DescripcionIpF</textarea>
+                    }
+                    else
+                    {
+                        <textarea id="ckeditor" class="ckeditor" rows="80" cols="40"></textarea>
+                    }
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+

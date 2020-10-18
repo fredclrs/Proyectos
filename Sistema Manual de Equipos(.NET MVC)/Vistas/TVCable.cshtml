@@ -1,0 +1,310 @@
+﻿
+@{
+    List<Cotas800.Models.Entidades.TVCable> ItemsTVdigital = (List<Cotas800.Models.Entidades.TVCable>)ViewBag.ItemsTVDigital;
+    List<Cotas800.Models.Entidades.TVCable> ItemsTVDth = (List<Cotas800.Models.Entidades.TVCable>)ViewBag.ItemsTVDth;
+
+    Cotas800.Models.Entidades.TVCable tv = (Cotas800.Models.Entidades.TVCable)ViewBag.TVDig;
+}
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="header-content-left">
+                @if (@tv != null)
+                {
+                    <h1>@tv.Nombre</h1>
+                }
+
+            </div>
+        </div>
+
+        <nav class="col-md-6">
+
+            <div class="btn-group">
+                <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" data-display="static" aria-haspopup="true" aria-expanded="false">
+                    Seleccione un Modelo de Caja
+                </button>
+                <div class="dropdown-menu dropdown-menu-lg-right">
+                    <h3>DIGITAL</h3>
+                    @foreach (var t in ItemsTVdigital)
+                    {
+                        <a class="dropdown-item" href="/Vistas/TVCableCombo/@t.Id">@t.Nombre</a>
+                    }
+                    <h3>DTH</h3>
+                    @foreach (var t in ItemsTVDth)
+                    {
+
+                        <a class="dropdown-item" href="/Vistas/TVCableCombo/@t.Id">@t.Nombre</a>
+                    }
+                </div>
+            </div>
+        </nav>
+    </div>
+</div>
+
+<br />
+<br />
+
+
+<div class="row">
+
+    <!-- Grid column -->
+    <div class="col-lg-4 col-md-12 mb-4">
+
+        <!--Modal: Name-->
+        <div class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+
+                <!--Content-->
+                <div class="modal-content">
+
+                    <!--Body-->
+                    <div class="modal-body mb-0 p-0">
+
+                        <div class="embed-responsive embed-responsive-16by9 z-depth-1-half">
+                            @if (tv != null)
+                            {
+                                if (!string.IsNullOrEmpty(tv.Img1))
+                                {
+                                    <iframe class="embed-responsive-item" src="@Url.Content(@tv.Img1)"
+                                            allowfullscreen></iframe>
+                                }
+                                
+                            }
+
+                        </div>
+
+                    </div>
+
+                    <!--Footer-->
+                    <div class="modal-footer justify-content-center">                       
+
+                        <button type="button" class="btn btn-outline-primary btn-rounded btn-md ml-4" data-dismiss="modal">Close</button>
+
+                    </div>
+
+                </div>
+                <!--/.Content-->
+
+            </div>
+        </div>
+        <!--Modal: Name-->
+
+        <a>
+            @if (tv != null)
+            {
+                if (!string.IsNullOrEmpty(tv.Img1))
+                {
+                    <img class="img-fluid z-depth-1" src="@Url.Content(@tv.Img1)"
+                         data-toggle="modal" data-target="#modal1">
+                }               
+            }
+
+        </a>
+
+    </div>
+    <!-- Grid column -->
+    <!-- Grid column -->
+    <div class="col-lg-4 col-md-6 mb-4">
+
+        <!--Modal: Name-->
+        <div class="modal fade" id="modal6" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+
+                <!--Content-->
+                <div class="modal-content">
+
+                    <!--Body-->
+                    <div class="modal-body mb-0 p-0">
+
+                        <div class="embed-responsive embed-responsive-16by9 z-depth-1-half">
+                            @if (tv != null)
+                            {
+                                if (!string.IsNullOrEmpty(tv.Img2))
+                                {
+                                    <iframe class="embed-responsive-item" src="@Url.Content(@tv.Img2)"
+                                            allowfullscreen></iframe>
+                                }                              
+                            }
+
+                        </div>
+
+                    </div>
+
+                    <!--Footer-->
+                    <div class="modal-footer justify-content-center">                       
+
+                        <button type="button" class="btn btn-outline-primary btn-rounded btn-md ml-4" data-dismiss="modal">Close</button>
+
+                    </div>
+
+                </div>
+                <!--/.Content-->
+
+            </div>
+        </div>
+        <!--Modal: Name-->
+
+        <a>
+            @if (tv != null)
+            {
+                if (!string.IsNullOrEmpty(tv.Img2))
+                {
+                    <img class="img-fluid z-depth-1" src="@Url.Content(@tv.Img2)"
+                         data-toggle="modal" data-target="#modal6">
+                }              
+
+            }
+
+        </a>
+
+    </div>
+    <!-- Grid column -->
+    <!-- Grid column -->
+    <div class="col-lg-4 col-md-6 mb-4">
+
+        <!--Modal: Name-->
+        <div class="modal fade" id="modal4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+
+                <!--Content-->
+                <div class="modal-content">
+
+                    <!--Body-->
+                    <div class="modal-body mb-0 p-0">
+
+                        <div class="embed-responsive embed-responsive-16by9 z-depth-1-half">
+                            @if (tv != null)
+                            {
+                                if (!string.IsNullOrEmpty (tv.Img3))
+                                {
+                                    <iframe class="embed-responsive-item" src="@Url.Content(@tv.Img3)"
+                                            allowfullscreen></iframe>
+                                }                               
+
+                            }
+
+                        </div>
+
+                    </div>
+
+                    <!--Footer-->
+                    <div class="modal-footer justify-content-center">                        
+
+                        <button type="button" class="btn btn-outline-primary btn-rounded btn-md ml-4" data-dismiss="modal">Close</button>
+
+                    </div>
+
+                </div>
+                <!--/.Content-->
+
+            </div>
+        </div>
+        <!--Modal: Name-->
+
+        <a>
+            @if (tv != null)
+            {
+                if (!string.IsNullOrEmpty(tv.Img3))
+                {
+                    <img class="img-fluid z-depth-1" src="@Url.Content(@tv.Img3)"
+                         data-toggle="modal" data-target="#modal4">
+                }               
+
+            }
+
+        </a>
+
+    </div>
+    <!-- Grid column -->
+
+</div>
+<!-- Grid row -->
+<!-- Grid row -->
+<div class="row">
+
+    <!-- Grid column -->
+    <div class="col-lg-4 col-md-12 mb-4">
+
+        <!--Modal: Name-->
+        <div class="modal fade" id="modal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+
+                <!--Content-->
+                <div class="modal-content">
+
+                    <!--Body-->
+                    <div class="modal-body mb-0 p-0">
+
+                        <div class="embed-responsive embed-responsive-16by9 z-depth-1-half">
+                            @if (tv != null)
+                            {
+                                if (!string.IsNullOrEmpty(tv.Img4))
+                                {
+                                    <iframe class="embed-responsive-item" src="@Url.Content(@tv.Img4)"
+                                            allowfullscreen></iframe>
+                                }
+
+                            }
+
+                        </div>
+
+                    </div>
+
+                    <!--Footer-->
+                    <div class="modal-footer justify-content-center">
+
+                        <button type="button" class="btn btn-outline-primary btn-rounded btn-md ml-4" data-dismiss="modal">Close</button>
+
+                    </div>
+
+                </div>
+                <!--/.Content-->
+
+            </div>
+        </div>
+        <!--Modal: Name-->
+
+        <a>
+            @if (tv != null)
+            {
+                if (!string.IsNullOrEmpty(tv.Img4))
+                {
+                    <img class="img-fluid z-depth-1" src="@Url.Content(@tv.Img4)"
+                         data-toggle="modal" data-target="#modal2">
+                }
+
+            }
+
+        </a>
+
+    </div>
+
+    <div class="col-md-6">
+        @if (tv != null)
+        {
+            if (!string.IsNullOrEmpty(tv.Manual))
+            {
+                <a class="btn btn-info" href="/Vistas/AbrirManualCajaTv/@tv.Id"> Abrir Manual </a>
+            }
+
+        }
+    </div>    
+
+</div>
+
+<div class="col-md-6">
+    <div class="header-content-right">
+        <h6>Alguna Explicacion Adicional de la Falla o Pasos a Seguir Para la solucion:</h6>
+        @if (tv != null)
+        {
+            <textarea id="ckeditor" class="ckeditor" rows="80" cols="40">@tv.Descripcion</textarea>
+        }
+        else
+        {
+            <textarea id="ckeditor" class="ckeditor" rows="80" cols="40"></textarea>
+        }
+
+    </div>
+
+</div>

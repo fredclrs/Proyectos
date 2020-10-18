@@ -1,0 +1,86 @@
+﻿
+@{
+    List<Cotas800.Models.Entidades.Falla> ItemsAdsl = (List<Cotas800.Models.Entidades.Falla>)ViewBag.ItemsAdsl;
+    List<Cotas800.Models.Entidades.Falla> ItemsCamo = (List<Cotas800.Models.Entidades.Falla>)ViewBag.ItemsCamo;
+    List<Cotas800.Models.Entidades.Falla> ItemsGpon = (List<Cotas800.Models.Entidades.Falla>)ViewBag.ItemsGpon;
+
+    Cotas800.Models.Entidades.Falla fallaD = (Cotas800.Models.Entidades.Falla)ViewBag.Falla;
+    Cotas800.Models.Entidades.Tecnologia tec = (Cotas800.Models.Entidades.Tecnologia)ViewBag.NombreTec;
+}
+
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="header-content-left">
+                @if (fallaD != null)
+                {
+                    <h1>@fallaD.NombreFalla</h1>
+                    <h4>@tec.Nombre</h4>
+                }
+                
+            </div>
+        </div>
+
+        <nav class="col-md-6">
+
+            <div class="btn-group">
+                <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" data-display="static" aria-haspopup="true" aria-expanded="false">
+                    Seleccione una Falla
+                </button>
+                <div class="dropdown-menu dropdown-menu-lg-right">
+                    <h4>ADSL</h4>
+                    @foreach (var falla in ItemsAdsl)
+                    {
+                        <a class="dropdown-item" href="/Vistas/FallaAdslCamoGponCombo/@falla.Id">@falla.NombreFalla</a>
+                    }
+                    <h4>CAMO</h4>
+                    @foreach (var falla in ItemsCamo)
+                    {
+
+                        <a class="dropdown-item" href="/Vistas/FallaAdslCamoGponCombo/@falla.Id">@falla.NombreFalla</a>
+                    }
+                    <h4>GPON</h4>
+                    @foreach (var falla in ItemsGpon)
+                    {
+                        <a class="dropdown-item" href="/Vistas/FallaAdslCamoGponCombo/@falla.Id">@falla.NombreFalla</a>
+                    }
+
+                </div>
+            </div>
+        </nav>
+    </div>
+</div>
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="header-content-left">
+                @if (fallaD != null)
+                {
+                    <img src="@Url.Content(fallaD.Img)" style="width: 100%" />
+                }
+                else
+                {
+                    <img src="#" style="width: 100%" />
+                }
+
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="header-content-right">
+                <h4>Pasos a Realizar</h4>
+                @if (fallaD != null)
+                {
+                    <textarea id="ckeditor" class="ckeditor" rows="80" cols="40" style="width:100%">@fallaD.Descripcion</textarea>
+                }
+                else
+                {
+                    <textarea id="ckeditor" class="ckeditor" rows="80" cols="40"></textarea>
+                }
+
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,238 @@
+﻿
+
+
+@using System.Data;
+@{
+
+    List<Cotas800.Models.Entidades.Tecnicos> ItemsTec = (List<Cotas800.Models.Entidades.Tecnicos>)ViewBag.ItemsTec;
+
+    Cotas800.Models.Entidades.Tecnicos tec = (Cotas800.Models.Entidades.Tecnicos)ViewBag.Tecnicos;
+    string NomTec = (string)ViewBag.NomTec;
+    string Telf = (string)ViewBag.Telf;
+    string Existe = (string)ViewBag.Existe;
+
+}
+
+
+<!--[if !IE]><!-->
+<style type="text/css">
+
+
+    /* Generic Styling, for Desktops/Laptops */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    /* Zebra striping */
+    tr:nth-of-type(odd) {
+        background: #eee;
+    }
+
+    th {
+        background: #333;
+        color: white;
+        font-weight: bold;
+    }
+
+    td, th {
+        padding: 6px;
+        border: 1px solid #ccc;
+        text-align: left;
+    }
+    /*
+    Max width before this PARTICULAR table gets nasty
+    This query will take effect for any screen smaller than 760px
+    and also iPads specifically.
+    */
+    @@media only screen and (max-width: 760px), (min-device-width: 768px) and (max-device-width: 1024px) {
+        /* Force table to not be like tables anymore */
+        table, thead, tbody, th, td, tr {
+            display: block;
+        }
+            /* Hide table headers (but not display: none;, for accessibility) */
+            thead tr {
+                position: absolute;
+                top: -9999px;
+                left: -9999px;
+            }
+
+        tr {
+            border: 1px solid #ccc;
+        }
+
+        td {
+            /* Behave  like a "row" */
+            border: none;
+            border-bottom: 1px solid #eee;
+            position: relative;
+            padding-left: 50%;
+        }
+
+            td:before {
+                /* Now like a table header */
+                position: absolute;
+                /* Top/left values mimic padding */
+                top: 6px;
+                left: 6px;
+                width: 45%;
+                padding-right: 10px;
+                white-space: nowrap;
+            }
+            /*
+     Label the data
+     */
+            td:before {
+                content: attr(data-title);
+            }
+    }
+</style>
+
+    <div class="container mt-5">
+        <div class="row">
+            @using (Html.BeginForm("CodTec", "Vistas", FormMethod.Post))
+            {
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <input type="text" class="form-control" name="Cod" placeholder="Codigo Tel Tecnico" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+
+                        <input type="submit" value="Buscar Tecnico" class="btn btn-success" />
+
+                    </div>
+                </div>
+            }
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+            <div class="form-group">
+                <div class="col-md-12">
+                    @if (!string.IsNullOrEmpty(NomTec))
+                    {
+                        <input type="text" class="form-control" id="exampleFormControlInput1" value="@NomTec">
+                    }
+                    else
+                    {
+                        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Nombre Del Tecnico">
+                    }
+
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-12">
+                    @if (!string.IsNullOrEmpty(Telf))
+                    {
+                        <input type="text" class="form-control" id="exampleFormControlInput1" value="@Telf">
+                    }
+                    else
+                    {
+                        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Telf. Del Tecnico">
+                    }
+
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="header-content-left">
+                @if (@tec != null)
+                {
+                    <h1>@tec.NombreEmpresa</h1>
+                }
+
+            </div>
+        </div>
+
+        <nav class="col-md-6">
+
+            <div class="btn-group">
+                <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" data-display="static" aria-haspopup="true" aria-expanded="false">
+                    Seleccione una Empresa
+                </button>
+                <div class="dropdown-menu dropdown-menu-lg-right">
+
+                    @foreach (var tecf in ItemsTec)
+                    {
+                        <a class="dropdown-item" href="/Vistas/TecnicosCombo/@tecf.Id">@tecf.NombreEmpresa</a>
+                    }
+
+                </div>
+            </div>
+        </nav>
+    </div>
+</div>
+</br>
+@if (!string.IsNullOrEmpty(Existe))
+{ 
+    <h5>@Existe</h5>
+}
+<div>
+    <table id="">
+
+        @if (ViewBag.Data != null)
+        {
+            <thead>
+
+                @foreach (DataColumn column in (ViewBag.Data as System.Data.DataTable).Columns)
+                {
+                <th>@column.ColumnName.ToUpper()</th>
+
+            }
+                </thead>
+                if ((ViewBag.Data as System.Data.DataTable).Rows.Count > 0)
+                {
+                    foreach (DataRow dr in (ViewBag.Data as System.Data.DataTable).Rows)
+                    {
+
+                        <tr>
+
+                            @foreach (DataColumn column in (ViewBag.Data as System.Data.DataTable).Columns)
+                            {
+                                <td data-title='@column.ColumnName'>
+
+                                    @dr[column].ToString()
+                                </td>
+
+                            }
+
+                        </tr>
+                    }
+
+                }
+                else
+                {
+                    int count = (ViewBag.Data as System.Data.DataTable).Columns.Count;
+                    <tr>
+
+                        <td colspan='@count' style="color:red;">
+
+                            No Data Found.
+                        </td>
+
+                    </tr>
+
+                }
+
+            }
+            else
+            {
+                if (ViewBag.Error != null)
+                {
+                    <tr>
+                        <td style="color:red;">
+
+                            @(ViewBag.Error != null ? ViewBag.Error.ToString() : "")
+                        </td>
+
+                    </tr>
+
+                }
+            }
+    </table>
+</div>
+

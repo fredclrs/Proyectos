@@ -1,0 +1,157 @@
+﻿
+@{
+    List<Cotas800.Models.Entidades.Modem> ItemsAdsl = (List<Cotas800.Models.Entidades.Modem>)ViewBag.ItemsAdsl;
+    List<Cotas800.Models.Entidades.Modem> ItemsCamo = (List<Cotas800.Models.Entidades.Modem>)ViewBag.ItemsCamo;
+
+    Cotas800.Models.Entidades.Modem modem = (Cotas800.Models.Entidades.Modem)ViewBag.Modem;
+}
+
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="header-content-left">                
+                @if (@modem!= null)
+                {
+                    <h1>@modem.Nombre</h1>
+                }
+
+            </div>
+        </div>
+
+        <nav class="col-md-6">
+            
+            <div class="btn-group">
+                <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" data-display="static" aria-haspopup="true" aria-expanded="false">
+                    Seleccione un Modelo de Modem
+                </button>
+                <div class="dropdown-menu dropdown-menu-lg-right">
+                    <h2>ADSL</h2>
+                    @foreach (var mod in ItemsAdsl)
+                    {
+                        <a class="dropdown-item" href="/Vistas/ModemAdslCamo/@mod.Id">@mod.Nombre</a>
+                    }
+                    <h2>CAMO</h2>
+                    @foreach (var mod in ItemsCamo)
+                    {
+
+                        <a class="dropdown-item" href="/Vistas/ModemAdslCamo/@mod.Id">@mod.Nombre</a>
+                    }
+                </div>
+            </div>
+            @*<select class="btn btn-secondary dropdown-toggle">
+            <optgroup label="ADSL">
+                <option>Seleccione un modelo de Modem</option>
+                @foreach (var mod in Items)
+                {
+
+                    <a class="dropdown-item" href="#">@mod.Nombre</a>
+
+                    <option>@mod.Nombre</option>
+
+                }
+            </optgroup>
+            <optgroup label="CABLE MODEM">
+                <option>Tent</option>
+                <option>Flashlight</option>
+                <option>Toilet Paper</option>
+            </optgroup>
+        </select>*@
+        </nav>
+    </div>  
+</div>
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="header-content-left">
+                @if (modem != null)
+                {
+                    <img src="@Url.Content(@modem.Img1)" style="width: 100%" />
+                }
+                else
+                {
+                    <img src="#" style="width: 100%" />
+                }
+
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="header-content-right">
+                <h4>Funciones de los LED del Modem</h4>
+                @if (modem != null)
+                {
+                    <textarea id="ckeditor" class="ckeditor" rows="80" cols="40">@modem.FuncionesLed</textarea>
+                }
+                else
+                {
+                    <textarea id="ckeditor" class="ckeditor" rows="80" cols="40"></textarea>
+                }
+
+            </div>           
+
+        </div>
+
+    </div>
+</div>
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="header-content-left">
+
+                @if (modem != null)
+                {
+                    <img src="@Url.Content(@modem.Img2)" style="width: 100%" />
+                }
+                else
+                {
+                    <img src="#" style="width: 100%" />
+                }
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="header-content-right">
+                <h4>Config. Ip Del Modem:</h4>
+                <div class="form-group">
+                    <h6>IP</h6>
+                    @if (modem != null)
+                    {
+                        string ip = modem.Ip.Substring(0,modem.Ip.Trim().Length - 1);
+                        ip = ip + "10";
+                        <input type="text" placeholder="IP" class="form-control" value="@ip">
+                    }
+                    else
+                    {
+                        <input type="text" placeholder="IP" class="form-control">
+                    }
+
+                </div>
+                <div class="form-group">
+                    <h6>Mascara de Subred:</h6>
+                    @if (modem != null)
+                    {
+                        <input type="text" class="form-control" value="255.255.255.0">
+                    }
+                    else { 
+                        <input type="text" placeholder="Mascara" class="form-control">
+                    }
+
+                </div>
+                <div class="form-group">
+                    <h6>Puerta de enlace:</h6>
+                    @if (modem != null)
+                    {
+                        <input type="text" class="form-control" value="@modem.Ip">
+                    }
+                    else { 
+                        <input type="text" placeholder="Puerta de Enlace" class="form-control">
+                    }
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+

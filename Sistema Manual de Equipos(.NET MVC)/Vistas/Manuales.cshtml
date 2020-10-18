@@ -1,0 +1,49 @@
+﻿@model IEnumerable<Cotas800.Models.Entidades.Manuales>
+
+
+@{
+    ViewBag.Title = "Index";
+}
+
+</br>
+</br>
+
+<h2>Listados de Manuales</h2>
+</br>
+</br>
+
+<table class="table table-striped">
+    <thead>
+        <tr>           
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+           
+            <th>
+                @Html.DisplayNameFor(model => model.Descripcion)
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+           
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>         
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Descripcion)
+            </td>
+
+            <td>
+                <a class="btn btn-info" href="/Vistas/AbrirManual/@item.Id"> Abrir Manual </a>
+            </td>
+        </tr>
+    }
+
+</table>
+
