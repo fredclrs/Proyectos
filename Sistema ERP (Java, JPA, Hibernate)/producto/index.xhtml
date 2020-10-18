@@ -1,0 +1,96 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/template.xhtml">
+
+	<ui:define name="head">
+		<h:outputScript name="js/validator.js" library="mbr" />
+	
+	<h:outputStylesheet library="css" name="nuevo.css" />
+ 	<h:outputScript library="scripts" name="jquery.dcjqaccordion.2.7.js"/>
+        <h:outputScript library="scripts" name="bootstrap.min.js"/>
+        <h:outputScript library="scripts" name="jquery.scrollTo.min.js"/>
+        <h:outputScript library="scripts" name="jquery.slimscroll.js"/>
+        <h:outputScript library="scripts" name="jquery.nicescroll.js"/>
+        <h:outputScript library="scripts" name="scripts.js"/>
+        <h:outputScript library="scripts" name="hover-dropdown.js"/>
+        <h:outputScript library="scripts" name="pfcrud.js"/>
+
+        
+     
+	</ui:define>
+
+	<ui:define name="content">
+
+		<h:form id="form001" enctype="multipart/form-data"  >
+
+			<!-- top buttons-->
+			<div class="Container100">
+				<div class="Card">
+					<div class="Container60 Responsive100 TexAlLeft">
+						
+						<p:commandButton icon="fa fa-plus" 
+							rendered="#{productoController.nuevo}"
+							styleClass="Fs14 White GreenButton" value="Nuevo Producto"
+							update="form001" immediate="true" 
+							actionListener="#{productoController.actionNuevo()}">
+						</p:commandButton>
+
+						<p:commandButton icon="fa fa-arrow-left"
+							rendered="#{productoController.seleccionado or productoController.registrar}"
+							styleClass="Fs14 White OrangeButton" value="Cancelar"
+							update="form001" immediate="true" process="@this" 
+							actionListener="#{productoController.actionCancelar()}">
+						</p:commandButton>
+
+						<p:commandButton icon="fa fa-floppy-o"
+							rendered="#{productoController.registrar}"
+							styleClass="Fs14 White GreenButton" value="Registrar"
+						    update="form001" 
+							actionListener="#{productoController.registrarProducto()}">
+							
+						</p:commandButton>
+                     
+						<p:commandButton icon="fa fa-edit"
+							rendered="#{productoController.seleccionado}" value="Modificar"
+							styleClass="Fs14 White BlueButton"
+							 update="form001" 
+							actionListener="#{productoController.modificarProducto()}">
+						</p:commandButton>
+					
+						<p:commandButton icon="fa fa-trash-o"
+							rendered="#{productoController.seleccionado}" value="Eliminar"
+							styleClass="Fs14 White RedButton" ajax="false"
+							actionListener="#{productoController.eliminarProducto()}"
+							update="form001">
+							<p:confirm header="¿ESTA SEGURO(A) DE ELIMINAR ESTE PRODUCTO ?"
+								message="Tenga en cuenta que será eliminado definitivamente del sistema."
+								icon="ui-icon-alert" />
+						</p:commandButton>
+                             
+					</div>
+					<div class="Container40 Responsive100 TexAlRight">
+						<p:breadCrumb>
+							<p:menuitem value="." url="/dashboard.xhtml" />
+							<p:menuitem value="Inventario" url="/pages/inventario/param/producto/index.xhtml" />
+							<p:menuitem value="Parametrizacion" url="/pages/inventario/param/producto/index.xhtml" />
+							<p:menuitem value="Producto" url="/pages/inventario/param/producto/index.xhtml" />
+						</p:breadCrumb>
+					</div>
+				</div>
+			</div>
+
+			<!-- center boxes -->
+			<div class="Container100 NoIndent Flex FlexWrap">
+				<ui:include src="#{productoController.page}" />
+
+			</div>
+			<p:growl id="growl" showDetail="true" />
+			<ui:include src="/WEB-INF/confirmation.xhtml" />
+		</h:form>
+
+	</ui:define>
+
+</ui:composition>

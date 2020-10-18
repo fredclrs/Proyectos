@@ -1,0 +1,21 @@
+
+
+	<p:outputLabel value="IMAGEN COMO CASAERP" />
+					<h:panelGroup id="t">
+
+						<p:fileUpload id="pictureUpload" auto="true" style="display:none;"
+							widgetVar="x" value="#{productoController.image}" mode="simple"
+							binding="#{upload}"
+							fileUploadListener="#{productoController.fileUploadListener}"
+							customUI="true" update="img" />
+						<div class="form_image">
+							<o:graphicImage id="img"
+								value="#{productoController.producto.image}" dataURI="true" />
+							<div class="form_image_buttons"
+								style="position: absolute; width: 100%;">
+								<a class="fa fa-pencil form_image_edit" id="upload_link" /> <a
+									class="fa fa-trash-o form_image_remove" id="remove_link" />
+							</div>
+						</div>
+					</h:panelGroup>
+					<p:message for="t" display="tooltip" />

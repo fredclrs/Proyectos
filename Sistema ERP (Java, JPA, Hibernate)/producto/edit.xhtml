@@ -1,0 +1,192 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:o="http://omnifaces.org/ui" xmlns:p="http://primefaces.org/ui">
+
+
+	<!-- center boxes -->
+
+	<h:selectBooleanCheckbox id="imageModified"
+		value="#{productoController.imageModified}" style="display: none;" />
+	<div class="Container100">
+		<div class="Card">
+			<div class="CardBigTopic">INFORMACIÓN DE PRODUCTOS</div>
+			<div class="SeparatorFull"></div>
+			<div class="Container100 ui-fluid">
+
+				<h:panelGrid id="grid1" columns="3" cellpadding="4">
+					<p:focus for="nombreProducto" />
+					<p:outputLabel for="codigoProducto" value="Código " />
+					<p:inputText id="codigoProducto" required="true"
+						onkeypress="return validateOnlyNumber(event)"
+						value="#{productoController.producto.codigo}" readonly="true">
+						<p:ajax event="change" />
+					</p:inputText>
+					<p:message for="codigoProducto" display="tooltip" />
+
+					<p:outputLabel value="imagen" />
+					<h:panelGroup id="p">
+						<p:fileUpload id="pictureUpload" auto="true"
+							value="#{productoController.image}" mode="advanced"
+							fileUploadListener="#{productoController.fileUploadListener}"
+							allowTypes="/(\.|\/)(jpe?g|png)$/" label="Agregar Imagen"
+							update="img" />
+						<div class="form_image">
+							<o:graphicImage id="img"
+								value="#{productoController.producto.image}" dataURI="true" />
+						</div>
+					</h:panelGroup>
+					<p:message for="p" display="tooltip" />
+
+
+					<p:outputLabel for="nombreProducto" value="Nombre " />
+					<p:inputText id="nombreProducto" required="true"
+						requiredMessage="Nombre del Producto es Obligatorio"
+						value="#{productoController.producto.nombre}">
+
+					</p:inputText>
+					<p:message for="nombreProducto" display="tooltip" />
+
+					<p:outputLabel for="descripcionProducto" value="Descripción " />
+					<p:inputTextarea id="descripcionProducto" rows="3" required="true"
+						value="#{productoController.producto.descripcion}">
+					</p:inputTextarea>
+					<p:message for="descripcionProducto" display="tooltip" />
+
+					<p:outputLabel for="codigoBarra" value="Código de Barras " />
+					<p:inputText id="codigoBarra"
+						value="#{productoController.producto.codigoBarra}">
+					</p:inputText>
+					<p:message for="codigoBarra" display="tooltip" />
+
+					<p:outputLabel for="cantidadMinima" value="Cantidad Minima " />
+					<p:spinner id="cantidadMinima" min="0" required="true"
+						value="#{productoController.producto.cantidadMinima}">
+					</p:spinner>
+					<p:message for="cantidadMinima" display="tooltip" />
+
+					<p:outputLabel for="cantidadMaxima" value="Cantidad Maxima " />
+					<p:spinner id="cantidadMaxima" min="0" required="true"
+						value="#{productoController.producto.cantidadMaxima}">
+					</p:spinner>
+					<p:message for="cantidadMaxima" display="tooltip" />
+
+					<p:outputLabel for="precioCompra" value="Precio Venta (Bs) " />
+					<p:inputNumber id="precioCompra" decimalSeparator=","
+						thousandSeparator="." required="true"
+						value="#{productoController.producto.precioVenta}">
+					</p:inputNumber>
+					<p:message for="precioCompra" display="tooltip" />
+
+
+					<p:outputLabel for="productoUnidadMedida" value="Unidad De Medida " />
+					<p:autoComplete id="productoUnidadMedida" required="true"
+						value="#{productoController.unidadMedida}"
+						completeMethod="#{productoController.onCompleteUnidadMedida}"
+						var="theme" itemLabel="#{theme.nombre}" itemValue="#{theme}"
+						converter="#{unidadMedidaConverter}" forceSelection="true"
+						dropdown="true" placeholder="Busqueda">
+
+					</p:autoComplete>
+					<p:message for="productoUnidadMedida" display="tooltip" />
+
+					<p:outputLabel for="productoLineaDeProducto" value="Presentacion " />
+					<p:autoComplete id="productoLineaDeProducto" required="true"
+						value="#{productoController.lineaProducto}"
+						completeMethod="#{productoController.onCompleteLineaProducto}"
+						var="theme" itemLabel="#{theme.nombre}" itemValue="#{theme}"
+						converter="#{lineaProductoConverter}" forceSelection="true"
+						dropdown="true" placeholder="Busqueda">
+						<p:ajax event="change" />
+					</p:autoComplete>
+					<p:message for="productoLineaDeProducto" display="tooltip" />
+
+					<p:outputLabel for="estadoProducto" value="Estado" />
+					<p:selectOneMenu id="estadoProducto"
+						value="#{productoController.producto.estado}">
+						<p:ajax event="valueChange" />
+						<f:selectItem itemLabel="ACTIVO" itemValue="AC" />
+						<f:selectItem itemLabel="INACTIVO" itemValue="IN" />
+					</p:selectOneMenu>
+					<p:message for="estadoProducto" display="tooltip" />
+
+				</h:panelGrid>
+			</div>
+		</div>
+	</div>
+
+	<script>
+
+        $(function () {
+            $("#upload_link").on('click', function (e) {
+                e.preventDefault();
+                $("#form001\\:pictureUpload:hidden").trigger('click');
+              
+            });
+        });
+
+        $(function () {
+            $("#upload_link2").on('click', function (e) {
+                e.preventDefault();
+                $("#form001\\:pictureUpload2:hidden").trigger('click');
+            });
+        });
+
+        $(function () {
+            $("#remove_link").on('click', function (e) {
+                e.preventDefault();
+                var source = $("[id='#{altImage.clientId}']").attr('src');
+                $("[id='#{image.clientId}']").attr('src', source);
+                $("[id='#{upload.clientId}']").val('');
+            });
+        });
+
+        $(function () {
+            $("#remove_link2").on('click', function (e) {
+                e.preventDefault();
+                var source = $("[id='#{altImage2.clientId}']").attr('src');
+                $(".form_image img").attr('src', source);
+                $("[id='#{upload2.clientId}']").val('');
+                $("#form001\\:imageModified").prop('checked', true);
+            });
+        });
+
+        function readPicture(input, output) {
+            if (input.files)
+            {
+                if (input.files[0])
+                {
+                    var reader = new FileReader();
+                    reader.onload = function (e)
+                    {
+                        output.attr('src', e.target.result);
+                    };
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
+        }
+
+
+        $("[id='#{upload.clientId}']").change(
+                function ()
+                {
+                    readPicture(this, $("[id='#{image.clientId}']"));
+                }
+        );
+       
+        $("[id='#{upload2.clientId}']").change(
+                function ()
+                {
+                    readPicture(this, $(".form_image img"));
+                    $("#form001\\:imageModified").prop('checked', true);
+                }
+        );
+
+        setActiveTab();
+        setListURL();
+
+    </script>
+
+
+</ui:composition>
